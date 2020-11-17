@@ -1,0 +1,13 @@
+#nav {
+  height: 10vh;
+}
+#nav svg {
+  font-size: 30px;
+}
+#nav button {
+  border-radius: 0px;
+  background-color: #6489bf;
+}
+#nav .navbar-nav a {
+  margin: 0px 10px;
+}

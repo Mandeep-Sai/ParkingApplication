@@ -1,0 +1,30 @@
+#mainJumbotron {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f7f7f7;
+  height: 90vh;
+}
+#mainJumbotron img {
+  width: 50%;
+}
+#mainJumbotron #content {
+  width: 50%;
+  margin-top: 10%;
+  text-align: left;
+  padding: 0px 50px;
+}
+#mainJumbotron #content h4 {
+  font-weight: 400;
+}
+#mainJumbotron #content button {
+  margin-top: 20px;
+  margin-right: 10px;
+  width: 100px;
+  background-color: #824c8a;
+  border: none !important;
+  color: white;
+  padding: 5px;
+}
+#mainJumbotron #content > p:nth-of-type(2) {
+  margin: 10px 0px !important;
+}
