@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.2.2",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "chart.js": "^2.9.4",
     "fontsource-roboto": "^3.0.3",
     "http-proxy-middleware": "^1.0.6",
     "qs": "^6.9.4",

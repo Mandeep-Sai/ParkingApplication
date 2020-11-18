@@ -1,0 +1,43 @@
+#parkingpage {
+  display: flex;
+}
+#parkingpage #parking_lots {
+  margin-left: 15vw;
+  padding: 20px;
+  width: 85vw;
+  scroll-behavior: auto;
+}
+#parkingpage #parking_lots #heading {
+  display: flex;
+  justify-content: space-between;
+}
+#parkingpage .searchBar {
+  width: 15vw;
+  display: flex;
+  border: 2px solid orange;
+  padding: 5px 10px;
+  border-radius: 30px;
+}
+#parkingpage .searchBar input {
+  border: none;
+  padding: 0px 5px;
+  background-color: transparent;
+}
+#parkingpage .searchBar input:focus {
+  outline: none;
+}
+#parkingpage .searchBar svg {
+  min-width: 18px;
+  font-size: 18px;
+  margin-top: 3px;
+}
+#parkingpage #lotInfo {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0px;
+}
+#parkingpage #lotInfo:hover {
+  cursor: pointer;
+}

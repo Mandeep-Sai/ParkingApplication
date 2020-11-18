@@ -1,0 +1,24 @@
+#pieChart {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+#metrics {
+  margin-left: 15vw;
+  padding: 20px;
+  width: 80vw;
+}
+#metrics #lotsAvailableInfo {
+  text-align: center;
+  height: 300px;
+  width: 15vw;
+  border: 2px black solid;
+  padding: 10px;
+}
+#metrics #charts {
+  display: flex;
+}
+#metrics #averageOccupancy {
+  height: 300px;
+  margin: 0px 20px;
+}
