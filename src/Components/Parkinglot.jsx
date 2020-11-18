@@ -63,7 +63,15 @@ export class ParkingLot extends Component {
                         "green","red"
                        ]
                    }],
-               }
+               },
+               options: {
+                responsive: true,
+                legend: {
+                    labels: {
+                        fontColor: 'white'
+                    }
+                },
+            }
                });
             new Chart(avgCtx, {
                 type: 'line',
@@ -71,11 +79,48 @@ export class ParkingLot extends Component {
                    labels:[...this.state.label],
                   datasets: [{
                       data: [...this.state.value],
-                      backgroundColor:[
-                       "white"
-                      ]
+                      backgroundColor:"#999ca1",
+                      color:"rgb(255, 255, 255)",
+                      label:["occupied lots"],
                   }],
               },
+              options: {
+                responsive: true,
+                legend: {
+                    labels: {
+                        fontColor: 'white'
+                    }
+                },
+                scales:{
+                    xAxes:[{
+                        gridLines: {
+                            color: "white",
+                        },
+                        ticks:{
+                            fontColor: 'white'
+                        },
+                        scaleLabel:{
+                            display:true,
+                            labelString:"Time (24hr format)",
+                            fontColor:"white"
+                        }
+                        
+                     }],
+                     yAxes:[{
+                        gridLines: {
+                            color: "white",
+                        },
+                        ticks:{
+                            fontColor: 'white'
+                        },
+                        scaleLabel:{
+                            display:true,
+                            labelString:"Occupied Lots",
+                            fontColor:"white"
+                        }
+                     }],
+                }
+            }
               });
         },500)
         //
@@ -90,41 +135,37 @@ export class ParkingLot extends Component {
             <>
             <div id="charts">
 
-            <div id="lotsAvailableInfo">
-                 <canvas id="pieChart" width="150px" height="150px"></canvas>
-                 <p>Available:{this.state.occupancyMetrics.capacity-this.state.occupancyMetrics.current}</p>
-                 <p>Occupied: {this.state.occupancyMetrics.current}</p>
-            </div>
-            <div id="topLots">
-            <Table striped bordered hover size="sm">
-            <thead>
-                <tr>
-                <th>S.No</th>
-                <th>Name</th>
-                <th>Capacity</th>
-                <th>Current</th>
-                </tr>
-            </thead>
-            <tbody>
-                {this.state.topLots!== null?
-                this.state.topLots.map((lot,key)=>{
-                    return(
-                    <tr>
-                    <td>{key+1}</td>
-                    <td>{lot.parkinglot_name}</td>
-                    <td>{lot.capacity}</td>
-                    <td>{lot.current_occupation}</td>
-                    </tr>
-                    )
-                })
-                :null}
-               
-            </tbody>
-</Table>
-            </div>
+                <div id="lotsAvailableInfo">
+                    <h5>Parking Lots Availability</h5>
+                    <canvas id="pieChart" width="150px" height="150px"></canvas>
+                    <p>Available:{this.state.occupancyMetrics.capacity-this.state.occupancyMetrics.current}</p>
+                    <p>Occupied: {this.state.occupancyMetrics.current}</p>
+                </div>
+                <div id="topLots">
+                    <h5>Top 5 parking lots</h5>  
+                    <div className="listElementsHeading">
+                    <p>S.No</p>    
+                    <p>Name</p>    
+                    <p>Capacity</p>    
+                    <p>Occupied</p>    
+                    </div>         
+                    {this.state.topLots!== null?
+                    this.state.topLots.map((lot,key)=>{
+                        return(
+                        <div className="listElements">
+                        <p>{key+1}</p>
+                        <p>{lot.parkinglot_name}</p>
+                        <p>{lot.capacity}</p>
+                        <p>{lot.current_occupation}</p>
+                        </div>
+                        )
+                    })
+                    :null}              
+                </div>
             </div>
             <div id="averageOccupancy">
-            <canvas id="averageChart" width="500px" height="200px"></canvas>
+                <h5>Average occupancy of this lot</h5>
+                <canvas id="averageChart" width="500px" height="200px"></canvas>
             </div>
             </>
             }

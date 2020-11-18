@@ -20,7 +20,7 @@
 #sidebar > p:nth-of-type(3):hover,
 #sidebar > p:nth-of-type(2):hover,
 #sidebar .active {
-  background-color: #eb7154;
+  background-color: #90a2bd;
   cursor: pointer;
   color: #f5f0f0;
 }

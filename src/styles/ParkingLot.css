@@ -1,24 +1,63 @@
 #pieChart {
-  max-width: 200px;
-  max-height: 200px;
+  margin: 20px auto;
+  max-width: 250px;
+  max-height: 250px;
 }
 
 #metrics {
   margin-left: 15vw;
   padding: 20px;
-  width: 80vw;
+  background-color: #90a2bd;
+  color: white;
 }
 #metrics #lotsAvailableInfo {
   text-align: center;
-  height: 300px;
-  width: 15vw;
-  border: 2px black solid;
+  height: 400px;
+  width: 20vw;
+  box-shadow: 2px 4px 12px 1px rgba(0, 0, 0, 0.72);
   padding: 10px;
+  border-radius: 30px;
+  background-color: #476ca6;
+}
+#metrics #charts #topLots {
+  text-align: center;
+  margin: 0px 40px;
+  border-radius: 10px;
+  color: white;
+}
+
+#metrics #charts #topLots .listElementsHeading {
+  display: flex;
+  padding: 10px;
+  margin: 10px 5px;
+}
+#metrics #charts #topLots .listElements {
+  display: flex;
+  padding: 10px;
+  margin: 10px 5px;
+  border-radius: 10px;
+  box-shadow: 2px 4px 5px -1px rgba(0, 0, 0, 0.72);
+  background-color: #476ca6;
+}
+#metrics #charts #topLots .listElements > p,
+#metrics #charts #topLots .listElementsHeading > p {
+  margin: 0px 20px !important;
+  width: 5vw;
+}
+#metrics #charts #topLots .listElements > p:nth-of-type(2),
+#metrics #charts #topLots .listElementsHeading > p:nth-of-type(2) {
+  width: 20vw;
 }
 #metrics #charts {
   display: flex;
 }
 #metrics #averageOccupancy {
-  height: 300px;
-  margin: 0px 20px;
+  background-color: #476ca6;
+  margin: 20px 0px;
+  padding: 10px;
+  box-shadow: 2px 4px 12px 1px rgba(0, 0, 0, 0.72);
+  border-radius: 30px;
+}
+#metrics #averageOccupancy > h5 {
+  text-align: center;
 }

@@ -11,7 +11,7 @@ export class Sidebar extends Component {
                 <p>Parking</p>
                 </div>
                 <p>Menu</p>
-                <hr style={{borderTop: '1px solid ',margin:"5px 0px 5px 10px"}}/>
+                <hr style={{borderTop: '1px solid ',margin:"5px 0px 0px 10px"}}/>
                 <p className="active">Smart Parking</p>
                 <p>My Account</p>
             </div>

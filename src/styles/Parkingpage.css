@@ -1,5 +1,8 @@
 #parkingpage {
   display: flex;
+  color: white;
+  background-color: #90a2bd;
+  min-height: 100vh;
 }
 #parkingpage #parking_lots {
   margin-left: 15vw;
@@ -14,17 +17,22 @@
 #parkingpage .searchBar {
   width: 15vw;
   display: flex;
-  border: 2px solid orange;
+  border: 2px solid #476ca6;
   padding: 5px 10px;
   border-radius: 30px;
+  background-color: #476ca6;
 }
 #parkingpage .searchBar input {
   border: none;
   padding: 0px 5px;
+  color: white;
   background-color: transparent;
 }
 #parkingpage .searchBar input:focus {
   outline: none;
+}
+#parkingpage .searchBar input::placeholder {
+  color: white;
 }
 #parkingpage .searchBar svg {
   min-width: 18px;
@@ -33,11 +41,19 @@
 }
 #parkingpage #lotInfo {
   display: flex;
-  border: 1px solid black;
+  border: 1px solid #476ca6;
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0px;
+  color: white;
+  background-color: #476ca6;
 }
 #parkingpage #lotInfo:hover {
   cursor: pointer;
+}
+#parkingpage .spinner-border {
+  color: #476ca6 !important;
+  position: absolute;
+  left: 50vw;
+  top: 50vh;
 }
