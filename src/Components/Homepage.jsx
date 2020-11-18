@@ -2,7 +2,10 @@ import React from 'react'
 import NavBar from './NavBar'
 import "../styles/Homepage.css"
 
-export default function Homepage() {
+import { useHistory } from 'react-router-dom';
+
+function Homepage() {
+    const history = useHistory()
     return (
         <div id="mainJumbotron">
            <div id="content">
@@ -14,10 +17,11 @@ export default function Homepage() {
                    and have a guaranteed spae waiting for you...</p>
                    <div>
                        <button>DISCOVER</button>
-                       <button>Sign Up</button>
+                       <button onClick={()=>history.push("/signin")}>Sign In</button>
                    </div>
            </div>
            <img src="https://www.kindpng.com/picc/m/316-3168502_parking-lot-clipart-rent-hd-png-download.png" alt=""/>
         </div>
     )
 }
+export default (Homepage)

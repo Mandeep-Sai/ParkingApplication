@@ -1,0 +1,13 @@
+#signin {
+  width: 25vw;
+  height: 60vh;
+  margin: auto auto;
+  text-align: center;
+  margin-top: 30vh;
+  padding: 0px auto;
+}
+#signin #inputform {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}

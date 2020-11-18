@@ -6,6 +6,7 @@
 }
 #mainJumbotron img {
   width: 50%;
+  object-fit: contain;
 }
 #mainJumbotron #content {
   width: 50%;

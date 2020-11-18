@@ -2,8 +2,11 @@ import React from 'react'
 import "../styles/NavBar.css"
 import {RiParkingBoxFill} from "react-icons/ri"
 import {Navbar,Nav,Button} from "react-bootstrap"
+import {withRouter} from "react-router-dom"
+import { useHistory } from 'react-router-dom';
 
-export default function NavBar() {
+function NavBar() {
+  const history = useHistory()
     return (
         <Navbar id="nav"  expand="lg">
         <RiParkingBoxFill/>
@@ -16,9 +19,10 @@ export default function NavBar() {
             <Nav.Link href="#link">Fees</Nav.Link>
             <Nav.Link href="#link">Features</Nav.Link>
             <Nav.Link href="#link">Contact Us</Nav.Link>
-            <Button>Sign Up</Button>
+            <Button onClick={()=>history.push("/signin")}>Sign In</Button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
     )
 }
+export default withRouter(NavBar)
