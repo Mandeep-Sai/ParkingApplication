@@ -29,7 +29,9 @@ export class Parkingpage extends Component {
                 })
             })
             let parsedResponse = await response.json()
-            this.setState({parkingLots:parsedResponse.data.parking_lots,filteredLots:parsedResponse.data.parking_lots,loading:false})
+            if(parsedResponse.data){
+                this.setState({parkingLots:parsedResponse.data.parking_lots,filteredLots:parsedResponse.data.parking_lots,loading:false})
+            }
         },500)
     }
     componentDidUpdate =(prevState) =>{
@@ -39,7 +41,7 @@ export class Parkingpage extends Component {
                     if(this.state.loading === true){
                         this.setState({showLoginExpired:true})
                     }
-                },15000)
+                },10000)
             }
         }
     }

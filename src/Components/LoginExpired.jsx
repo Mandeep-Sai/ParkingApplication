@@ -1,11 +1,14 @@
 import React from 'react'
+import "../styles/LoginExpired.css"
+import {useHistory} from "react-router-dom"
 
 export default function LoginExpired() {
+    const history = useHistory()
     return (
         <div id="loginExpired">
-            <h2>Login Expired</h2>
-            <h4>Please Login again</h4>
-            <button>SIGN IN</button>
+            <h3>Login Expired!!</h3>
+            <h5>Please Login again</h5>
+            <button onClick={()=>history.push("/signin")}>SIGN IN</button>
         </div>
     )
 }

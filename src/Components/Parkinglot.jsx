@@ -12,11 +12,12 @@ export class ParkingLot extends Component {
         this.state = {
             lot_id:this.props.match.params.lot_uuid,
             zone_id:this.props.match.params.zone_uuid,
-            accessToken:"",
             occupancyMetrics:null,
             label:["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"],
             value:null,
-            topLots:null
+            topLots:null,
+            loading:true,
+            showLoginExpired:false
        }
        this.chartRef = React.createRef();
     }
@@ -49,7 +50,7 @@ export class ParkingLot extends Component {
 
                 let hourlyValues= parsedAvgOccupancy.data.average_occupation.filter(element=>element.timestamp %4===0)
                 let value = hourlyValues.map(hourValue => hourValue.value)
-                this.setState({occupancyMetrics:parsedResponse.data,value,topLots:parsedTopLotsResponse.data.benchmark})
+                this.setState({occupancyMetrics:parsedResponse.data,value,topLots:parsedTopLotsResponse.data.benchmark,loading:false})
             
                 const avgCtx = document.getElementById("averageChart")
                 const ctx = document.getElementById("pieChart");          
@@ -129,14 +130,26 @@ export class ParkingLot extends Component {
         },500)
         //
     }
+    componentDidUpdate =(prevState) =>{
+        if(prevState.loading !== this.state.loading){
+            if(this.state.loading === true){
+                setTimeout(()=>{
+                    if(this.state.loading === true){
+                        this.setState({showLoginExpired:true})
+                    }
+                },10000)
+            }
+        }
+    }
     
     render() {
         return (
-            <>
+            <div id="wrapper">
             <Sidebar/>
-            {this.state.occupancyMetrics === null?<Spinner animation="border" variant="primary" /> :
+            {this.state.loading === true?(this.state.showLoginExpired === false ?<Spinner  animation="border" variant="primary" />:<LoginExpired/>)
+             :
             <>
-                <div id="metrics">
+            <div id="metrics">
             <div id="charts">
 
                 <div id="lotsAvailableInfo">
@@ -174,13 +187,13 @@ export class ParkingLot extends Component {
                 <canvas id="averageChart" width="500px" height="200px"></canvas>
             </div>
             </>
-             :<LoginExpired/> 
+             :null
            
             }
             </div>
             </>
             }
-            </>
+            </div>
         )
     }
 }

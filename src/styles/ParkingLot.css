@@ -3,7 +3,9 @@
   max-width: 250px;
   max-height: 250px;
 }
-
+#wrapper {
+  background-color: #90a2bd !important;
+}
 #metrics {
   margin-left: 15%;
   padding: 20px;

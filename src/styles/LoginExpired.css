@@ -1,0 +1,16 @@
+#loginExpired {
+  position: absolute;
+  top: 45vh;
+  left: 45vw;
+  text-align: center;
+}
+#loginExpired button {
+  margin-top: 20px;
+  margin-right: 10px;
+  width: 100px;
+  background-color: #476ca6;
+  border: none !important;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+}
