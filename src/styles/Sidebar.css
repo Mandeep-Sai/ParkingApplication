@@ -1,6 +1,26 @@
 #sidebar {
   width: 15vw;
-  background-color: black;
+  background-color: #476ca6;
   height: 100vh;
   position: fixed;
+}
+#sidebar #logo {
+  display: flex;
+  width: 100%;
+  font-size: 28px;
+  padding: 10px 30px;
+  align-items: center;
+  color: white;
+}
+#sidebar > p {
+  text-align: left;
+  color: white;
+  padding: 5px 10px;
+}
+#sidebar > p:nth-of-type(3):hover,
+#sidebar > p:nth-of-type(2):hover,
+#sidebar .active {
+  background-color: #eb7154;
+  cursor: pointer;
+  color: #f5f0f0;
 }
