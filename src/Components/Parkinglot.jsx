@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Chart from 'chart.js';
 import "../styles/ParkingLot.css"
-import Sidebar from './Sidebar';
+import SideBar from './SideBar';
 import {Spinner} from "react-bootstrap"
 import LoginExpired from './LoginExpired';
 
@@ -85,7 +85,7 @@ export class ParkingLot extends Component {
                       data: [...this.state.value],
                       backgroundColor:"#999ca1",
                       color:"rgb(255, 255, 255)",
-                      label:["occupied lots"],
+                      label:["occupied spaces"],
                   }],
               },
               options: {
@@ -145,7 +145,7 @@ export class ParkingLot extends Component {
     render() {
         return (
             <div id="wrapper">
-            <Sidebar/>
+            <SideBar/>
             {this.state.loading === true?(this.state.showLoginExpired === false ?<Spinner  animation="border" variant="primary" />:<LoginExpired/>)
              :
             <>

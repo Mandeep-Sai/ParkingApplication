@@ -20,6 +20,16 @@
   color: white;
   padding: 5px 10px;
 }
+#sidebar button {
+  text-align: center;
+  margin: 10px 20% !important;
+  width: 100px;
+  background-color: white;
+  border: none !important;
+  color: #476ca6;
+  padding: 5px;
+  border-radius: 3px;
+}
 #sidebar > p:nth-of-type(3):hover,
 #sidebar > p:nth-of-type(2):hover,
 #sidebar .active {

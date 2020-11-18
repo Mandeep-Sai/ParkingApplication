@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Sidebar from './Sidebar'
+import SideBar from './SideBar'
 import "../styles/Parkingpage.css"
 import {BsSearch} from "react-icons/bs"
 import {Col, Row, Spinner} from "react-bootstrap"
 import LoginExpired from './LoginExpired'
 
-export class Parkingpage extends Component {
+export class ParkingPage extends Component {
     constructor(props) {
         super(props)
     
@@ -61,7 +61,7 @@ export class Parkingpage extends Component {
     render() {
         return (
             <div id="parkingpage">
-             <Sidebar></Sidebar> 
+             <SideBar></SideBar> 
              <div id="parking_lots">
                  <div id="heading">
                  <h5>All Available Parking Lots</h5>
@@ -92,4 +92,4 @@ export class Parkingpage extends Component {
     }
 }
 
-export default Parkingpage
+export default ParkingPage

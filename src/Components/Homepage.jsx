@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './NavBar'
-import "../styles/Homepage.css"
+import "../styles/HomePage.css"
 
 import { useHistory } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ function Homepage() {
                <h4>All Available Parking.</h4>
                <p>Avoid the hassle of parking.
                    Pre-purchase the perfect spot
-                   and have a guaranteed spae waiting for you...</p>
+                   and have a guaranteed space waiting for you...</p>
                    <div>
                        <button>DISCOVER</button>
                        <button onClick={()=>history.push("/signin")}>Sign In</button>

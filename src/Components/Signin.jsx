@@ -14,11 +14,14 @@ const useStyles = makeStyles((theme) => ({
   },
   button:{
     color:"white",
-    backgroundColor:"#476ca6"
+    backgroundColor:"#476ca6",
+    "&:hover":{
+      backgroundColor:"#90a2bd"
+    }
   }
 }));
 
-function Signin() {
+function SignIn() {
   const classes = useStyles();
   const history = useHistory();
   const [username,setUsername] = useState("")
@@ -55,11 +58,11 @@ function Signin() {
           <p>Welcome back! Sign In and search for your parking spot</p>
       <form id="inputform" className={classes.root} noValidate autoComplete="off">
         <TextField id="username"  onChange={(e)=>updateLoginInfo(e)} label="Username" variant="outlined"  />
-        <TextField id="password" onChange={(e)=>updateLoginInfo(e)} label="Password" variant="outlined" />
+        <TextField id="password" type="password" onChange={(e)=>updateLoginInfo(e)} label="Password" variant="outlined" />
         <Button className={classes.button} onClick={()=>signin()} variant="contained">SIGN IN</Button>
       </form>
         </div>
     );
 }
 
-export default (Signin)
+export default (SignIn)

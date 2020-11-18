@@ -5,6 +5,10 @@
 }
 #nav svg {
   font-size: 30px;
+  color: white;
+}
+#nav .navbar-brand {
+  color: white;
 }
 #nav button {
   border-radius: 0px;
