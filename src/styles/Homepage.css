@@ -21,11 +21,25 @@
   margin-top: 20px;
   margin-right: 10px;
   width: 100px;
-  background-color: #824c8a;
+  background-color: #476ca6;
   border: none !important;
   color: white;
   padding: 5px;
+  border-radius: 3px;
 }
 #mainJumbotron #content > p:nth-of-type(2) {
   margin: 10px 0px !important;
+}
+@media only screen and (max-width: 768px) {
+  #mainJumbotron {
+    display: flex;
+    flex-direction: column;
+  }
+  #mainJumbotron img,
+  #mainJumbotron #content {
+    width: 100%;
+  }
+  #mainJumbotron img {
+    margin-top: -100px;
+  }
 }

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button:{
     color:"white",
-    backgroundColor:"#F37E60"
+    backgroundColor:"#476ca6"
   }
 }));
 

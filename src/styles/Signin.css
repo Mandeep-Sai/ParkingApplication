@@ -1,5 +1,5 @@
 #signin {
-  width: 25vw;
+  width: 30vw;
   height: 60vh;
   margin: auto auto;
   text-align: center;
@@ -10,4 +10,10 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
+}
+
+@media only screen and (max-width: 768px) {
+  #signin {
+    width: 80vw;
+  }
 }

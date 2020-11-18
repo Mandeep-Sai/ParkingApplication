@@ -1,13 +1,16 @@
 #sidebar {
-  width: 15vw;
+  width: 15%;
   background-color: #476ca6;
-  height: 100vh;
+  height: 100%;
   position: fixed;
+}
+#mobileSidebar {
+  display: none;
 }
 #sidebar #logo {
   display: flex;
   width: 100%;
-  font-size: 28px;
+  font-size: 2vw;
   padding: 10px 30px;
   align-items: center;
   color: white;
@@ -23,4 +26,35 @@
   background-color: #90a2bd;
   cursor: pointer;
   color: #f5f0f0;
+}
+
+@media only screen and (max-width: 768px) {
+  #sidebar {
+    display: none;
+  }
+  #mobileSidebar {
+    display: flex;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    z-index: 10;
+    background-color: #476ca6;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #mobileSidebar > div {
+    border-left: 2px solid white;
+    height: 80%;
+  }
+  #mobileSidebar > p {
+    width: 100px;
+  }
+  #mobileSidebar p:nth-of-type(2) {
+    margin-right: 10% !important;
+  }
+  #mobileSidebar p:nth-of-type(1) {
+    margin-left: 15% !important;
+  }
 }

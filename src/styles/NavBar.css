@@ -1,13 +1,22 @@
 #nav {
   height: 10vh;
+  background-color: #90a2bd;
+  font-size: 16px;
 }
 #nav svg {
   font-size: 30px;
 }
 #nav button {
   border-radius: 0px;
-  background-color: #6489bf;
+  background-color: #f7f7f7;
+  color: #476ca6;
 }
 #nav .navbar-nav a {
   margin: 0px 10px;
+}
+#nav .navbar-collapse .ml-auto {
+  background-color: #90a2bd;
+}
+#nav .navbar-collapse .ml-auto > a {
+  color: black !important;
 }

@@ -3,6 +3,7 @@ import Sidebar from './Sidebar'
 import "../styles/Parkingpage.css"
 import {BsSearch} from "react-icons/bs"
 import {Col, Row, Spinner} from "react-bootstrap"
+import LoginExpired from './LoginExpired'
 
 export class Parkingpage extends Component {
     constructor(props) {
@@ -11,7 +12,9 @@ export class Parkingpage extends Component {
         this.state = {
              parkingLots:null,
              filteredLots:null,
-             lotName:""
+             lotName:"",
+             loading:true,
+             showLoginExpired:false
         }
     }
     
@@ -26,8 +29,19 @@ export class Parkingpage extends Component {
                 })
             })
             let parsedResponse = await response.json()
-            this.setState({parkingLots:parsedResponse.data.parking_lots,filteredLots:parsedResponse.data.parking_lots})
+            this.setState({parkingLots:parsedResponse.data.parking_lots,filteredLots:parsedResponse.data.parking_lots,loading:false})
         },500)
+    }
+    componentDidUpdate =(prevState) =>{
+        if(prevState.loading !== this.state.loading){
+            if(this.state.loading === true){
+                setTimeout(()=>{
+                    if(this.state.loading === true){
+                        this.setState({showLoginExpired:true})
+                    }
+                },15000)
+            }
+        }
     }
     slotInfo=(info)=>{
         this.props.history.push(`/parking_lot/${info.parkinglot_uuid}/${info.global_zone_uuid}`)
@@ -54,20 +68,20 @@ export class Parkingpage extends Component {
                      <input type="text" onChange={(e)=>this.filterLots(e)} placeholder="Search here"/>
                  </div>
                  </div>
-                 {this.state.filteredLots === null ?  <Spinner animation="border" variant="primary" />:
+                 {this.state.loading === true ? (this.state.showLoginExpired === false ?<Spinner  animation="border" variant="primary" />:<LoginExpired/>)
+                  :
                  <>
-                 <Row className="row row cols-xs-2 row-cols-md-4 row cols-lg-5">
+
                  {this.state.filteredLots.map((parkingLot,key)=>{
                      return(
-                    <Col>
+                    
                      <div onClick={()=>this.slotInfo(parkingLot)} id="lotInfo">
                          
                          <p>{parkingLot.name}</p>
                      </div>
-                     </Col>
+
                      )
                     })}
-                    </Row>
                     </>
                  }
              </div>

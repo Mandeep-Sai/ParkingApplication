@@ -5,7 +5,7 @@
   min-height: 100vh;
 }
 #parkingpage #parking_lots {
-  margin-left: 15vw;
+  margin-left: 15%;
   padding: 20px;
   width: 85vw;
   scroll-behavior: auto;
@@ -41,19 +41,33 @@
 }
 #parkingpage #lotInfo {
   display: flex;
+  width: 75vw;
   border: 1px solid #476ca6;
   border-radius: 5px;
   padding: 10px;
-  margin: 10px 0px;
+  margin: 20px 0px;
   color: white;
   background-color: #476ca6;
 }
 #parkingpage #lotInfo:hover {
   cursor: pointer;
+  background-color: #113369;
 }
-#parkingpage .spinner-border {
+.spinner-border {
   color: #476ca6 !important;
   position: absolute;
   left: 50vw;
   top: 50vh;
+}
+@media only screen and (max-width: 768px) {
+  #parkingpage #parking_lots {
+    margin-left: 5%;
+  }
+  #parkingpage #parking_lots #heading {
+    display: flex;
+    flex-direction: column;
+  }
+  #parkingpage .searchBar {
+    width: 100%;
+  }
 }

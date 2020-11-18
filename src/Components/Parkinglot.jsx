@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Chart from 'chart.js';
 import "../styles/ParkingLot.css"
 import Sidebar from './Sidebar';
-import {Table} from "react-bootstrap"
+import {Spinner} from "react-bootstrap"
+import LoginExpired from './LoginExpired';
 
 export class ParkingLot extends Component {
     constructor(props) {
@@ -29,7 +30,6 @@ export class ParkingLot extends Component {
                     "Authorization":`Bearer ${this.state.accessToken}`
                 })
             })
-            let parsedResponse = await response.json()
             let avgOccupancy = await fetch(`/spnew/parkinglot/${this.state.lot_id}/zone/${this.state.zone_id}/average-occupation`,{
                 method:"GET",
                 headers:new Headers({
@@ -42,14 +42,17 @@ export class ParkingLot extends Component {
                     "Authorization":`Bearer ${this.state.accessToken}`
                 })
             })
+            let parsedResponse = await response.json()
             let parsedTopLotsResponse = await topLotsResponse.json()
             let parsedAvgOccupancy = await avgOccupancy.json()
-           let hourlyValues= parsedAvgOccupancy.data.average_occupation.filter(element=>element.timestamp %4===0)
-           let value = hourlyValues.map(hourValue => hourValue.value)
-           this.setState({occupancyMetrics:parsedResponse.data,value,topLots:parsedTopLotsResponse.data.benchmark})
-           console.log(this.state.topLots);
-           const avgCtx = document.getElementById("averageChart")
-           const ctx = document.getElementById("pieChart");          
+            if(parsedResponse.data){
+
+                let hourlyValues= parsedAvgOccupancy.data.average_occupation.filter(element=>element.timestamp %4===0)
+                let value = hourlyValues.map(hourValue => hourValue.value)
+                this.setState({occupancyMetrics:parsedResponse.data,value,topLots:parsedTopLotsResponse.data.benchmark})
+            
+                const avgCtx = document.getElementById("averageChart")
+                const ctx = document.getElementById("pieChart");          
                new Chart(ctx, {
                  type: 'pie',
                  data : {
@@ -122,6 +125,7 @@ export class ParkingLot extends Component {
                 }
             }
               });
+            }
         },500)
         //
     }
@@ -130,9 +134,9 @@ export class ParkingLot extends Component {
         return (
             <>
             <Sidebar/>
-            <div id="metrics">
-            {this.state.occupancyMetrics === null?null :
+            {this.state.occupancyMetrics === null?<Spinner animation="border" variant="primary" /> :
             <>
+                <div id="metrics">
             <div id="charts">
 
                 <div id="lotsAvailableInfo">
@@ -163,13 +167,19 @@ export class ParkingLot extends Component {
                     :null}              
                 </div>
             </div>
+            {this.state.value.length >0? 
+            <>
             <div id="averageOccupancy">
                 <h5>Average occupancy of this lot</h5>
                 <canvas id="averageChart" width="500px" height="200px"></canvas>
             </div>
             </>
+             :<LoginExpired/> 
+           
             }
             </div>
+            </>
+            }
             </>
         )
     }

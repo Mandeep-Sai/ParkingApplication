@@ -5,7 +5,7 @@
 }
 
 #metrics {
-  margin-left: 15vw;
+  margin-left: 15%;
   padding: 20px;
   background-color: #90a2bd;
   color: white;
@@ -60,4 +60,33 @@
 }
 #metrics #averageOccupancy > h5 {
   text-align: center;
+}
+@media only screen and (max-width: 768px) {
+  #metrics {
+    margin-left: 0%;
+  }
+  #metrics #charts {
+    display: flex;
+    flex-direction: column;
+  }
+  #metrics #lotsAvailableInfo {
+    width: 100%;
+  }
+  #pieChart {
+    max-width: 250px;
+    max-height: 250px;
+  }
+  #metrics #charts #topLots {
+    margin: 20px 0px;
+  }
+  #metrics #charts #topLots .listElementsHeading {
+    margin: 10px 5px 10px 0px;
+    padding: 10px 0px;
+  }
+  #metrics #averageOccupancy {
+    min-height: 200px;
+  }
+  #metrics #averageOccupancy #averageChart {
+    min-height: 200px;
+  }
 }

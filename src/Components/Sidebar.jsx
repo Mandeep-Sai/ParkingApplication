@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import {  RiParkingBoxFill} from "react-icons/ri"
+import {  FaUserCircle} from "react-icons/fa"
 import "../styles/Sidebar.css"
 
 export class Sidebar extends Component {
     render() {
         return (
+            <>
             <div id="sidebar">
                 <div id="logo">
                 <RiParkingBoxFill/>
@@ -15,6 +17,12 @@ export class Sidebar extends Component {
                 <p className="active">Smart Parking</p>
                 <p>My Account</p>
             </div>
+            <div id="mobileSidebar">
+                <p className="active">Smart Parking</p>
+                <div></div>
+                <p><FaUserCircle/></p>
+            </div>
+            </>
         )
     }
 }
