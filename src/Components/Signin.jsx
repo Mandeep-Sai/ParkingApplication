@@ -38,6 +38,7 @@ function SignIn() {
       setPassword(e.currentTarget.value)
     }
   }
+  /* Making signin request to API and setting token in localstorage */
   const signin=async()=>{
    let response= await fetch("/api/v1/oauth/token", {
  method: "POST",
@@ -51,6 +52,8 @@ function SignIn() {
   let parsedResponse = await response.json()
   let accessToken = parsedResponse.access_token
   localStorage.setItem('accessToken',accessToken);
+
+  /* Actions based on response */
   if(response.ok){
     history.push("/parking")
   }else{
@@ -64,16 +67,18 @@ function SignIn() {
         <div id="signin">
           <RiParkingBoxFill/>
           <h5>SIGN IN</h5>
-          <p>Welcome back! Sign In and search for your parking spot</p>
-          {loginError ?  <Alert style={{marginTop:"10px"}}  variant="warning">
+          <p>Welcome back!  Sign In and Search for your parking spot...</p>
+
+          {/* SIGN IN error handling with bootstrap alert */}
+          {loginError ?  <Alert style={{marginTop:"10px"}}  variant="danger">
             Login Error! Check your credentials
           </Alert>:null}
          
-      <form id="inputform" className={classes.root} noValidate autoComplete="off">
-        <TextField id="username"  onChange={(e)=>updateLoginInfo(e)} label="Username" variant="outlined"  />
-        <TextField id="password" type="password" onChange={(e)=>updateLoginInfo(e)} label="Password" variant="outlined" />
-        <Button className={classes.button} onClick={()=>signin()} variant="contained">SIGN IN</Button>
-      </form>
+          <form id="inputform" className={classes.root} noValidate autoComplete="off">
+            <TextField id="username"  onChange={(e)=>updateLoginInfo(e)} label="Username" variant="outlined"  />
+            <TextField id="password" type="password" onChange={(e)=>updateLoginInfo(e)} label="Password" variant="outlined" />
+            <Button className={classes.button} onClick={()=>signin()} variant="contained">SIGN IN</Button>
+          </form>
         </div>
     );
 }

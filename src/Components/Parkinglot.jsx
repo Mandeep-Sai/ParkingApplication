@@ -24,7 +24,7 @@ export class ParkingLot extends Component {
     componentDidMount=async()=> {
         this.setState({accessToken:localStorage.getItem("accessToken")})
         setTimeout(async()=>{
-
+            /* Fetching the data */
             let response = await fetch(`/spnew/parkinglot/${this.state.lot_id}/zone/${this.state.zone_id}/current-state`,{
                 method:"GET",
                 headers:new Headers({
@@ -46,90 +46,93 @@ export class ParkingLot extends Component {
             let parsedResponse = await response.json()
             let parsedTopLotsResponse = await topLotsResponse.json()
             let parsedAvgOccupancy = await avgOccupancy.json()
-            if(parsedResponse.data){
+            if(response.ok && avgOccupancy.ok && topLotsResponse.ok){
 
+                /* Filtering data for hourly value */
                 let hourlyValues= parsedAvgOccupancy.data.average_occupation.filter(element=>element.timestamp %4===0)
                 let value = hourlyValues.map(hourValue => hourValue.value)
                 this.setState({occupancyMetrics:parsedResponse.data,value,topLots:parsedTopLotsResponse.data.benchmark,loading:false})
-            
                 const avgCtx = document.getElementById("averageChart")
                 const ctx = document.getElementById("pieChart");          
-               new Chart(ctx, {
-                 type: 'pie',
-                 data : {
-                     labels: [
-                         'Available',
-                         'Occupied',
-                     ],
-                   datasets: [{
-                       data: [this.state.occupancyMetrics.capacity-this.state.occupancyMetrics.current,this.state.occupancyMetrics.current],
-                       backgroundColor:[
-                        "#2e8b57","#fd5e53"
-                       ]
-                   }],
-               },
-               options: {
-                responsive: true,
-                legend: {
-                    labels: {
-                        fontColor: 'white'
-                    }
+                /* PIE chart*/
+                new Chart(ctx, {
+                    type: 'pie',
+                    data : {
+                        labels: [
+                            'Available',
+                            'Occupied',
+                        ],
+                    datasets: [{
+                        data: [this.state.occupancyMetrics.capacity-this.state.occupancyMetrics.current,this.state.occupancyMetrics.current],
+                        backgroundColor:[
+                            "#2e8b57","#fd5e53"
+                        ]
+                    }],
                 },
-            }
-               });
-            new Chart(avgCtx, {
-                type: 'line',
-                data : {
-                   labels:[...this.state.label],
-                  datasets: [{
-                      data: [...this.state.value],
-                      backgroundColor:"#999ca1",
-                      color:"rgb(255, 255, 255)",
-                      label:["occupied spaces"],
-                  }],
-              },
-              options: {
-                responsive: true,
-                legend: {
-                    labels: {
-                        fontColor: 'white'
-                    }
-                },
-                scales:{
-                    xAxes:[{
-                        gridLines: {
-                            color: "white",
-                        },
-                        ticks:{
+                options: {
+                    responsive: true,
+                    legend: {
+                        labels: {
                             fontColor: 'white'
-                        },
-                        scaleLabel:{
-                            display:true,
-                            labelString:"Time (24hr format)",
-                            fontColor:"white"
                         }
-                        
-                     }],
-                     yAxes:[{
-                        gridLines: {
-                            color: "white",
-                        },
-                        ticks:{
-                            fontColor: 'white'
-                        },
-                        scaleLabel:{
-                            display:true,
-                            labelString:"Occupied spaces",
-                            fontColor:"white"
-                        }
-                     }],
+                    },
                 }
-            }
-              });
+                });
+
+                /* LINE chart */
+                new Chart(avgCtx, {
+                    type: 'line',
+                    data : {
+                    labels:[...this.state.label],
+                    datasets: [{
+                        data: [...this.state.value],
+                        backgroundColor:"#999ca1",
+                        color:"rgb(255, 255, 255)",
+                        label:["occupied spaces"],
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        labels: {
+                            fontColor: 'white'
+                        }
+                    },
+                    scales:{
+                        xAxes:[{
+                            gridLines: {
+                                color: "white",
+                            },
+                            ticks:{
+                                fontColor: 'white'
+                            },
+                            scaleLabel:{
+                                display:true,
+                                labelString:"Time (24hr format)",
+                                fontColor:"white"
+                            }
+                            
+                        }],
+                        yAxes:[{
+                            gridLines: {
+                                color: "white",
+                            },
+                            ticks:{
+                                fontColor: 'white'
+                            },
+                            scaleLabel:{
+                                display:true,
+                                labelString:"Occupied spaces",
+                                fontColor:"white"
+                            }
+                        }],
+                    }
+                }
+                });
             }
         },500)
-        //
     }
+    /* checking state and if loading is 10secs then login expired is displayed */
     componentDidUpdate =(prevState) =>{
         if(prevState.loading !== this.state.loading){
             if(this.state.loading === true){
@@ -137,7 +140,7 @@ export class ParkingLot extends Component {
                     if(this.state.loading === true){
                         this.setState({showLoginExpired:true})
                     }
-                },10000)
+                },12000)
             }
         }
     }
@@ -151,13 +154,14 @@ export class ParkingLot extends Component {
             <>
             <div id="metrics">
             <div id="charts">
-
+                {/* PIE chart */}
                 <div id="lotsAvailableInfo">
                     <h5>Parking Lots Availability</h5>
                     <canvas id="pieChart" width="150px" height="150px"></canvas>
                     <p>Available: {this.state.occupancyMetrics.capacity-this.state.occupancyMetrics.current}</p>
                     <p>Occupied: {this.state.occupancyMetrics.current}</p>
                 </div>
+                {/* Top 5 Table */}
                 <div id="topLots">
                     <h5>Top 5 parking lots</h5>  
                     <div className="listElementsHeading">
@@ -182,6 +186,7 @@ export class ParkingLot extends Component {
             </div>
             {this.state.value.length >0? 
             <>
+            {/* LINE chart */}
             <div id="averageOccupancy">
                 <h5>Average occupancy of this lot</h5>
                 <canvas id="averageChart" width="500px" height="200px"></canvas>

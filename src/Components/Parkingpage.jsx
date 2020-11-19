@@ -26,7 +26,7 @@ export class ParkingPage extends Component {
     componentDidMount=async()=> {
         this.setState({accessToken:localStorage.getItem("accessToken")})
         setTimeout(async()=>{
-
+        /* Fetching data after getting token from local storage */
            let response = await fetch("/spnew/parkinglots",{
                 method: "GET",
                 headers:new Headers({
@@ -40,6 +40,7 @@ export class ParkingPage extends Component {
         
         },500)
     }
+    /* checking state and if loading is 10secs then login expired is displayed */
     componentDidUpdate =(prevState) =>{
         if(prevState.loading !== this.state.loading){
             if(this.state.loading === true){
@@ -47,13 +48,15 @@ export class ParkingPage extends Component {
                     if(this.state.loading === true){
                         this.setState({showLoginExpired:true})
                     }
-                },10000)
+                },12000)
             }
         }
     }
+    /* redirecting to parking lot*/
     slotInfo=(info)=>{
         this.props.history.push(`/parking_lot/${info.parkinglot_uuid}/${info.global_zone_uuid}`)
     }
+    /* Filtering based on input */
     filterLots=(e)=>{
     this.setState({lotName:e.currentTarget.value})
     if(this.state.lotName.length>0){
@@ -64,6 +67,7 @@ export class ParkingPage extends Component {
         this.setState({filteredLots:this.state.parkingLots})
     }
     }
+    /* Pagination click handler */
     handlePageClick =(pageNumber)=>{
         console.log(pageNumber);
         this.setState({currentPage:pageNumber})
@@ -90,32 +94,28 @@ export class ParkingPage extends Component {
                  <>
 
                  {this.state.filteredLots.map((parkingLot,key)=>{
-                     return(
-                    
+                     return(                    
                      <div onClick={()=>this.slotInfo(parkingLot)} id="lotInfo">
-                         
                          <p>{parkingLot.name}</p>
                      </div>
-
                      )
                     })}
                     </>
                  }
              </div>
-           
             </div>
             {this.state.loading === false ? 
-            <div id="paginationWrapper">
-            <Pagination
-          activePage={this.state.currentPage}
-          itemsCountPerPage={this.state.lotsPerPage}
-          totalItemsCount={this.state.parkingLots.length}
-          pageRangeDisplayed={5}
-          onChange={this.handlePageClick.bind(this)}
-          itemClass="page-item"
-            linkClass="page-link"
-        />
-        </div>
+                <div id="paginationWrapper">
+                <Pagination
+                activePage={this.state.currentPage}
+                itemsCountPerPage={this.state.lotsPerPage}
+                totalItemsCount={this.state.parkingLots.length}
+                pageRangeDisplayed={5}
+                onChange={this.handlePageClick.bind(this)}
+                itemClass="page-item"
+                    linkClass="page-link"
+                />
+                </div>
             :null}
             </>
         )

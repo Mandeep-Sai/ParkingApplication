@@ -15,10 +15,10 @@ function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link active href="/">Home</Nav.Link>
-            <Nav.Link href="#link">About us</Nav.Link>
-            <Nav.Link href="#link">Fees</Nav.Link>
-            <Nav.Link href="#link">Features</Nav.Link>
-            <Nav.Link href="#link">Contact Us</Nav.Link>
+            <Nav.Link href="/">About us</Nav.Link>
+            <Nav.Link href="/">Fees</Nav.Link>
+            <Nav.Link href="/">Features</Nav.Link>
+            <Nav.Link href="/">Contact Us</Nav.Link>
             <Button onClick={()=>history.push("/signin")}>Sign In</Button>
           </Nav>
         </Navbar.Collapse>

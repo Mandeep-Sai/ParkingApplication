@@ -9,13 +9,13 @@ export class SideBar extends Component {
     constructor(props) {
         super(props)
         this.state={
-            selectedMenu:this.props.match.path==="/parking" ? "smart":"account"
+            selectedMenu:this.props.match.path==="/inprogress" ? "account":"smart"
         }
     }
     
     logOut = () =>{
         localStorage.removeItem("accessToken");
-        this.props.history.push("/")
+        this.props.history.push("/signin")
     }
     selectMenu=(keyword)=>{
         this.setState({selectedMenu:keyword})
@@ -30,18 +30,21 @@ export class SideBar extends Component {
                 </div>
                 <p>Menu</p>
                 <hr style={{borderTop: '1px solid ',margin:"5px 0px 0px 10px"}}/>
+
                 <p className={this.state.selectedMenu === "smart" ? "active":null}
                  onClick={()=>{this.props.history.push("/parking");this.selectMenu("smart")}} 
                                 >Smart Parking</p>
+
                 <p className={this.state.selectedMenu === "account" ? "active":null}
                 onClick={()=>{this.props.history.push("/inprogress");this.selectMenu("account")}}
                  >My Account</p>
+
                 <button onClick={()=>this.logOut()}>Logout</button>
             </div>
             <div id="mobileSidebar">
                 <p className="active" onClick={()=>this.props.history.push("/parking")} >Smart Parking</p>
                 <div></div>
-                <p><FaUserCircle/></p>
+                <p onClick={()=>this.props.history.push("/inprogress")}><FaUserCircle/></p>
                 <div></div>
                 <p onClick={()=>this.logOut()} ><FiLogOut/></p>
             </div>

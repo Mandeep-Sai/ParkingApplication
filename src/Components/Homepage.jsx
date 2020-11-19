@@ -10,13 +10,13 @@ function Homepage() {
         <div id="mainJumbotron">
            <div id="content">
                <p>PARK HAPPY</p>
-               <h2>Search and Book</h2>
+               <h2>Search and Occupy</h2>
                <h4>All Available Parking.</h4>
                <p>Avoid the hassle of parking.
-                   Pre-purchase the perfect spot
+                   Pre-plan the perfect spot
                    and have a guaranteed space waiting for you...</p>
                    <div>
-                       <button>DISCOVER</button>
+                       <button onClick={()=>history.push("/signin")}>DISCOVER</button>
                        <button onClick={()=>history.push("/signin")}>Sign In</button>
                    </div>
            </div>
