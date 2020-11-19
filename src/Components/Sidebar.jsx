@@ -8,11 +8,17 @@ import {withRouter} from "react-router-dom"
 export class SideBar extends Component {
     constructor(props) {
         super(props)
+        this.state={
+            selectedMenu:this.props.match.path==="/parking" ? "smart":"account"
+        }
     }
     
     logOut = () =>{
         localStorage.removeItem("accessToken");
         this.props.history.push("/")
+    }
+    selectMenu=(keyword)=>{
+        this.setState({selectedMenu:keyword})
     }
     render() {
         return (
@@ -24,8 +30,12 @@ export class SideBar extends Component {
                 </div>
                 <p>Menu</p>
                 <hr style={{borderTop: '1px solid ',margin:"5px 0px 0px 10px"}}/>
-                <p className="active" onClick={()=>this.props.history.push("/parking")} >Smart Parking</p>
-                <p>My Account</p>
+                <p className={this.state.selectedMenu === "smart" ? "active":null}
+                 onClick={()=>{this.props.history.push("/parking");this.selectMenu("smart")}} 
+                                >Smart Parking</p>
+                <p className={this.state.selectedMenu === "account" ? "active":null}
+                onClick={()=>{this.props.history.push("/inprogress");this.selectMenu("account")}}
+                 >My Account</p>
                 <button onClick={()=>this.logOut()}>Logout</button>
             </div>
             <div id="mobileSidebar">

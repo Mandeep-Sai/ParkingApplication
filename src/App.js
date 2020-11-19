@@ -8,6 +8,7 @@ import SignIn from './Components/SignIn';
 import 'fontsource-roboto';
 import ParkingPage from './Components/ParkingPage';
 import ParkingLot from './Components/ParkingLot';
+import InProgress from './Components/InProgress';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/" exact component={HomePage} />
       <Route path="/signin" exact component={SignIn} />
      <Route path="/parking" exact component={ParkingPage} />
+     <Route path="/inprogress" exact component={InProgress} />
       <Route path="/parking_lot/:lot_uuid/:zone_uuid"   component={ParkingLot} />
     </Router>
   );
