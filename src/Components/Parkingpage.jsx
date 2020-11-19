@@ -4,6 +4,8 @@ import "../styles/Parkingpage.css"
 import {BsSearch} from "react-icons/bs"
 import {Col, Row, Spinner} from "react-bootstrap"
 import LoginExpired from './LoginExpired'
+import Pagination from "react-js-pagination";
+
 
 export class ParkingPage extends Component {
     constructor(props) {
@@ -14,7 +16,10 @@ export class ParkingPage extends Component {
              filteredLots:null,
              lotName:"",
              loading:true,
-             showLoginExpired:false
+             showLoginExpired:false,
+             currentPage:0,
+             lotsPerPage:10,
+             pageCount:0
         }
     }
     
@@ -30,8 +35,9 @@ export class ParkingPage extends Component {
             })
             let parsedResponse = await response.json()
             if(parsedResponse.data){
-                this.setState({parkingLots:parsedResponse.data.parking_lots,filteredLots:parsedResponse.data.parking_lots,loading:false})
+                this.setState({parkingLots:parsedResponse.data.parking_lots,filteredLots:parsedResponse.data.parking_lots.slice(0,10),loading:false})
             }
+        
         },500)
     }
     componentDidUpdate =(prevState) =>{
@@ -58,8 +64,17 @@ export class ParkingPage extends Component {
         this.setState({filteredLots:this.state.parkingLots})
     }
     }
+    handlePageClick =(pageNumber)=>{
+        console.log(pageNumber);
+        this.setState({currentPage:pageNumber})
+        const offset = (pageNumber - 1) * this.state.lotsPerPage;
+        let filteredLots = this.state.parkingLots.slice(offset,offset+this.state.lotsPerPage)
+        const pageCount = Math.ceil(this.state.parkingLots/this.state.lotsPerPage)
+        this.setState({filteredLots,pageCount})
+    }
     render() {
         return (
+            <>
             <div id="parkingpage">
              <SideBar></SideBar> 
              <div id="parking_lots">
@@ -87,7 +102,22 @@ export class ParkingPage extends Component {
                     </>
                  }
              </div>
+           
             </div>
+            {this.state.loading === false ? 
+            <div id="paginationWrapper">
+            <Pagination
+          activePage={this.state.currentPage}
+          itemsCountPerPage={this.state.lotsPerPage}
+          totalItemsCount={this.state.parkingLots.length}
+          pageRangeDisplayed={5}
+          onChange={this.handlePageClick.bind(this)}
+          itemClass="page-item"
+            linkClass="page-link"
+        />
+        </div>
+            :null}
+            </>
         )
     }
 }

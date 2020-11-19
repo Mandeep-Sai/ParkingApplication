@@ -3,8 +3,11 @@
   height: 60vh;
   margin: auto auto;
   text-align: center;
-  margin-top: 30vh;
+  margin-top: 25vh;
   padding: 0px auto;
+}
+#signin svg {
+  font-size: 50px !important;
 }
 #signin #inputform {
   margin-top: 10px;

@@ -15,6 +15,9 @@
   align-items: center;
   color: white;
 }
+#sidebar #logo:hover {
+  cursor: pointer;
+}
 #sidebar > p {
   text-align: left;
   color: white;
@@ -29,6 +32,9 @@
   color: #476ca6;
   padding: 5px;
   border-radius: 3px;
+}
+#sidebar button:hover {
+  background-color: #e6e4e4;
 }
 #sidebar > p:nth-of-type(3):hover,
 #sidebar > p:nth-of-type(2):hover,
@@ -53,18 +59,14 @@
     height: 40px;
     align-items: center;
     justify-content: space-between;
+    color: white;
   }
   #mobileSidebar > div {
     border-left: 2px solid white;
     height: 80%;
   }
   #mobileSidebar > p {
-    width: 100px;
-  }
-  #mobileSidebar p:nth-of-type(2) {
-    margin-right: 10% !important;
-  }
-  #mobileSidebar p:nth-of-type(1) {
-    margin-left: 15% !important;
+    display: block;
+    margin: 0px auto !important;
   }
 }

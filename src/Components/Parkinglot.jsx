@@ -62,9 +62,9 @@ export class ParkingLot extends Component {
                          'Occupied',
                      ],
                    datasets: [{
-                       data: [this.state.occupancyMetrics.capacity,this.state.occupancyMetrics.current],
+                       data: [this.state.occupancyMetrics.capacity-this.state.occupancyMetrics.current,this.state.occupancyMetrics.current],
                        backgroundColor:[
-                        "green","red"
+                        "#2e8b57","#fd5e53"
                        ]
                    }],
                },
@@ -119,7 +119,7 @@ export class ParkingLot extends Component {
                         },
                         scaleLabel:{
                             display:true,
-                            labelString:"Occupied Lots",
+                            labelString:"Occupied spaces",
                             fontColor:"white"
                         }
                      }],
@@ -155,7 +155,7 @@ export class ParkingLot extends Component {
                 <div id="lotsAvailableInfo">
                     <h5>Parking Lots Availability</h5>
                     <canvas id="pieChart" width="150px" height="150px"></canvas>
-                    <p>Available:{this.state.occupancyMetrics.capacity-this.state.occupancyMetrics.current}</p>
+                    <p>Available: {this.state.occupancyMetrics.capacity-this.state.occupancyMetrics.current}</p>
                     <p>Occupied: {this.state.occupancyMetrics.current}</p>
                 </div>
                 <div id="topLots">

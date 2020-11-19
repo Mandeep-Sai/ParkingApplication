@@ -1,8 +1,8 @@
 #parkingpage {
-  display: flex;
   color: white;
   background-color: #90a2bd;
   min-height: 100vh;
+  display: flex;
 }
 #parkingpage #parking_lots {
   margin-left: 15%;
@@ -59,6 +59,24 @@
   left: 50vw;
   top: 50vh;
 }
+.pagination {
+  padding: 10px 0px;
+  margin-left: 45%;
+  width: 30%;
+}
+.pagination .page-item.active .page-link {
+  background-color: #476ca6 !important;
+  border-color: #476ca6 !important;
+  color: white !important;
+}
+.pagination .page-link {
+  color: #476ca6 !important;
+}
+#paginationWrapper {
+  width: 100%;
+  background-color: #90a2bd;
+  height: 80px;
+}
 @media only screen and (max-width: 768px) {
   #parkingpage #parking_lots {
     margin-left: 5%;
@@ -69,5 +87,8 @@
   }
   #parkingpage .searchBar {
     width: 100%;
+  }
+  .pagination {
+    margin-left: 10%;
   }
 }

@@ -14,3 +14,12 @@
   padding: 5px;
   border-radius: 3px;
 }
+
+@media only screen and (max-width: 768px) {
+  #loginExpired {
+    position: absolute;
+    top: 45%;
+    left: 25%;
+    text-align: center;
+  }
+}

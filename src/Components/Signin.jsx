@@ -5,6 +5,9 @@ import Button from '@material-ui/core/Button';
 import "../styles/Signin.css"
 import qs from "qs";
 import {useHistory} from "react-router-dom"
+import {Alert} from "react-bootstrap"
+import {  RiParkingBoxFill} from "react-icons/ri"
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -26,6 +29,7 @@ function SignIn() {
   const history = useHistory();
   const [username,setUsername] = useState("")
   const [password,setPassword] = useState("")
+  const [loginError,setLoginError] = useState(false)
   const updateLoginInfo =(e)=>{
     let id = e.currentTarget.id
     if(id==="username"){
@@ -48,14 +52,23 @@ function SignIn() {
   let accessToken = parsedResponse.access_token
   localStorage.setItem('accessToken',accessToken);
   if(response.ok){
-    console.log("hello")
     history.push("/parking")
+  }else{
+    setLoginError(true)
+    setTimeout(()=>{
+      setLoginError(false)
+    },2500)
   }
   }
     return (
         <div id="signin">
+          <RiParkingBoxFill/>
           <h5>SIGN IN</h5>
           <p>Welcome back! Sign In and search for your parking spot</p>
+          {loginError ?  <Alert style={{marginTop:"10px"}}  variant="warning">
+            Login Error! Check your credentials
+          </Alert>:null}
+         
       <form id="inputform" className={classes.root} noValidate autoComplete="off">
         <TextField id="username"  onChange={(e)=>updateLoginInfo(e)} label="Username" variant="outlined"  />
         <TextField id="password" type="password" onChange={(e)=>updateLoginInfo(e)} label="Password" variant="outlined" />
